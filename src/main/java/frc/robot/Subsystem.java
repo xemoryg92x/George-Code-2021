@@ -12,10 +12,11 @@ public class Subsystem {
     private Spark wheelSpin = new Spark(0); //need pwm channel
     private DoubleSolenoid wheelSpinLift = new DoubleSolenoid(/*the forward pcm id*/1, /*the reverse pcm id*/2);
 
-    //Constructor
+    //Constructor will be called in Robot.java to create Subsystem object
     public Subsystem(){}
 
     //Wheel Spin Method
+    //Assign buttons to wheelLift, wheelLower, spinRight, and spinLeft
     public void wheelSpin(boolean wheelLift, boolean wheelLower, boolean spinRight, boolean spinLeft){
         //Controls pneumatic lifting mechanism
         //May need to nest the spinning control inside the if statement for wheelLift

@@ -6,9 +6,6 @@
 *comment out the code that should NOT be used. -EG 9/2/21
 */
 
-//This is a test for GitHub
-//Attempt #2
-
 package frc.robot;
 
 //Imports
@@ -19,20 +16,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController; //improved functionality for xbox controller use
 import edu.wpi.first.wpilibj.GenericHID.Hand; //allows us to choose the side of the controller (useful for triggers & sticks)
 import edu.wpi.first.wpilibj.smartdashboard.SendableRegistry; //allows us to add info we select to dashboard
-import edu.wpi.first.wpilibj.Compressor; //need for pneumatics
+import edu.wpi.first.wpilibj.Compressor; //Allows us to create Compressor objects
 
 
 public class Robot extends TimedRobot { 
-  //Added by EG
-  //Initialization of main variables that will be used throughout the code
+  
+  //Initializations
   private double startTime; // used for timer in autonomous mode find in autoInit
   //Conroller0 controls the drivetrain and spin wheel
   private XboxController controller0 = new XboxController(0); //0 refers to USB port # - left side
   //Controller1 controls the other subsystems
   private XboxController controller1 = new XboxController(1); //1refers to USB port # - right side
+  //The drivetrain object and dot operators will be called upon when accessing RobotDrivetrain methods
   private RobotDrivetrain drivetrain = new RobotDrivetrain();
+  //The sub object and dot operators will be called upon when accessing Subsystem methods
   private Subsystem sub = new Subsystem();
-  private Compressor c = new Compressor(0); // CAN id
+  private Compressor c = new Compressor(0); // CAN id on PCM??
   
  
   @Override
@@ -40,7 +39,7 @@ public class Robot extends TimedRobot {
     //Sets encoder positions to 0
     drivetrain.resetEncoders();
 
-    //Temp compressor code - needs refined EG 9/4/21
+    //Compressor starts when robot is enabled
     c.setClosedLoopControl(true); //Should kick on when below max pressure and stop automatically
     c.start();
   }
@@ -73,7 +72,7 @@ public class Robot extends TimedRobot {
     double time  = Timer.getFPGATimestamp();
     //Not sure why time-startTime works the way it does -EG 9/2/21
     //Speeds go between 0 and 1
-    //Set at 30% speed right now
+    //Set at 50% speed right now
     //Code has robot move forward for 1 second
     if (time - startTime < 1){
       drivetrain.arcadeDrive(0.5, 0);
